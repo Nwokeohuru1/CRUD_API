@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UserAPI.Data.Models;
+using UserAPI.Models;
 
 namespace UserAPI.Data
 {
@@ -10,7 +10,7 @@ namespace UserAPI.Data
 
         }
 
-        public DbSet<Item> Items { get; set; }
+        public DbSet<User> users { get; set; }
    
         
 
