@@ -64,22 +64,24 @@ namespace UserAPI.Repositories
             return user;
         }
 
-        public async Task<bool> UpdateUser(UserUpdateDto user)
+        public async Task<User> UpdateUser(UserUpdateDto user)
         {
             var password = _encryption.Encrypt(user.Password);
-            var Edituser = new User
-            {
-                Id = user.Id,
-                Password = password,
-                UserName = user.UserName,
-                Quantity = user.Quantity,
-                DateModified = user.DateModified,
-                UserModified = user.UserModified,
-                
-            };
-            _userDb.Update(Edituser);
+
+            var userToUpdate = await GetUser(user.Id);
+
+            userToUpdate.UserName = user.UserName;
+            userToUpdate.Password = password;
+            userToUpdate.UserModified = user.UserModified;
+            userToUpdate.Quantity = user.Quantity;
+            userToUpdate.DateModified = DateTime.Now;
+            userToUpdate.DelFlag = false;
+
+
+            //_userDb.users.Update(Edituser);
             await _userDb.SaveChangesAsync();
-            return true;
+            return userToUpdate;
+            
         }
     }
 }

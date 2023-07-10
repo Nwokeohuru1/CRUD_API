@@ -57,8 +57,8 @@ namespace UserAPI.Controllers
         [Route("Update")]
         public async Task<IActionResult> UpdateUser(UserUpdateDto user)
         {
-            var Editeduser = await _userRepo.GetUser(user.Id);
-            if (Editeduser == null)
+            var result = await _userRepo.GetUser(user.Id);
+            if (result == null)
             {
                 return BadRequest("User not found");
             }

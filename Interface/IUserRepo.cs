@@ -8,7 +8,7 @@ namespace UserAPI.Interface
         Task<User> GetUser(int id);
         Task<User> GetDecryptUser(int id);
         Task<bool> CreateUser(UserCreateDto user);
-        Task<bool> UpdateUser(UserUpdateDto user);
+        Task<User> UpdateUser(UserUpdateDto user);
         Task<bool> DeleteUser(int id);
         
     }
